@@ -1,0 +1,16 @@
+@import url('../common.css');
+
+h4 span {
+    display: inline-block;
+    line-height: 2rem;
+    vertical-align: middle;
+    color: red;
+}
+
+.mw-button {
+    text-align: right
+}
+
+.write-button {
+    margin-top: 10px;
+}

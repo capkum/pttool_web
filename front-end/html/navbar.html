@@ -1,0 +1,30 @@
+<nav class="navbar is-light">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            <h1>
+                <b>Persnal Training Tool</b>
+            </h1>
+        </a>
+        <div class="navbar-burger burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div id="navMenu" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'mbr_list' %}">
+                회원관리
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <span>관리자 님</span>
+            <button class="button logout-btn is-link">
+                <i class="fa fa-key" aria-hidden="true"></i>  <b>LogOut</b>
+            </button>
+        </div>
+    </div>
+
+</nav>

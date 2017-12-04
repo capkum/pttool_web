@@ -1,0 +1,87 @@
+{% extends "main_layout.html" %} 
+{% load static %}
+
+{% block style %} 
+<link rel="stylesheet" href="{% static 'common/font-awesome-4.7.0/css/font-awesome.css' %}">
+<link rel="stylesheet" href="{% static 'css/members/mbr_list.css'%}">
+<link rel="stylesheet" href="{% static 'css/common.css'%}">
+{% endblock %}
+
+{% block content %}
+<div  id="mbrList">
+    <div class="columns ">
+        <div class="column is-offset-1 is-10" id="mbrHeader prefix">
+            <p class="title is-5 mbr-top">
+                회원관리
+            </p>
+            <div class="field has-addons column is-3 is-paddingless">
+                <div class="control">
+                    <a class="button is-static">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="control">
+                    <input class="input" v-model="search" type="text" placeholder="회원검색">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-offset-1 is-10">
+            <div class="columns is-multiline">
+                <div class="column is-narrow cursor" v-for="mbr in filteredList" :key="mbr.id">
+                    <div class="tile is-parent" @click="modal(mbr.fields.name, mbr.fields.membercode)">
+                        <article class="tile is-child box">
+                            <p class="title is-6">
+                                ${ mbr.fields.name }
+                                (<span v-if="mbr.fields.sex == 'm'"> 남 </span>
+                                <span v-else> 여 </span>)
+                            </p>
+                            <ul class="subtitle is-6">
+                                <li>
+                                    <i class="fa fa-birthday-cake" aria-hidden="true"></i> 
+                                    <span>생녕월일 ${ mbr.fields.birthday }</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-id-badge" aria-hidden="true"></i> 
+                                    <span>키 ${ mbr.fields.height }Cm</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-check" aria-hidden="true"></i> 
+                                    <span>몸무게 ${ mbr.fields.weight }Kg</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-battery-three-quarters" aria-hidden="true"></i> 
+                                    <span>활동량</span>
+                                    <span v-if="mbr.fields.activility == 0">Top</span>
+                                    <span v-else-if="mbr.fields.activility == 1">High</span>
+                                    <span v-if="mbr.fields.activility == 2">Middle</span>
+                                    <span v-if="mbr.fields.activility == 3">Low</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-calendar-o" aria-hidden="true"></i> 
+                                    <span>작성일</span> 
+                                    <span v-if="mbr.fields.updatedate == null ">
+                                        기록안됨
+                                    </span>
+                                    <span v-else>
+                                        ${ moment(mbr.fields.updatedate).format('YYYY-MM-DD') }
+                                    </span>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mbrmodal v-show="showModal" @close="showModal = false" :mbr-info="modal_conf"></mbrmodal>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.js"></script>
+<script src="{% static 'js/mbr/mbr_list.js' %}"></script>
+{% endblock %}

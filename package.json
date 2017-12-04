@@ -1,0 +1,29 @@
+{
+  "name": "pttool_web",
+  "version": "1.0.0",
+  "description": "pttool ",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/seoungjin_kim/pttool_web.git"
+  },
+  "keywords": [
+    "pttool"
+  ],
+  "author": "capkum",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/seoungjin_kim/pttool_web#readme",
+  "devDependencies": {
+    "@types/bootstrap": "^3.3.36",
+    "@types/jquery": "^3.2.16",
+    "browserify": "^14.5.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.3",
+    "tsify": "^3.0.3",
+    "typescript": "^2.6.1"
+  }
+}

@@ -1,0 +1,68 @@
+{% extends "main_layout.html" %} 
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/inbody/inbody.css' %}">
+{% endblock %}
+{% block content%}
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <h4>
+            <span>김성진님</span>의 Inbody 측정 데이터 등록 </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon">체중</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">KG</span>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon">골격근량</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">KG</span>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon">체지방량</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">KG</span>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon">체지방률</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-sm-offset-4 col-sm-2">
+        <a href="#" class="btn btn-block btn-danger">
+            <span>삭제</span>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="#" class="btn btn-block btn-warning">
+            <span>수정</span>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="#" class="btn btn-block btn-primary">
+            <span>등록</span>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="{% url 'inbody_index' %}" class="btn btn-block btn-info">
+            <span>목록</span>
+        </a>
+    </div>
+</div>
+{% endblock%}
+
+{% block script %}
+{% endblock %}

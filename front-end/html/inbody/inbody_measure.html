@@ -1,0 +1,94 @@
+{% extends "main_layout.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/inbody/inbody.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <h4>
+            <span>김성진님</span>의 Inbody 측정 데이터 </h4>
+    </div>
+</div>
+
+ 
+    <div id='chart1' class="chart-layout"></div>
+    <div id='fatRate' class="chart-layout"></div>
+ 
+
+<div class="row "> 
+    <div class="col-xs-12 col-sm-offset-10 col-sm-2 ">
+        <a href="{% url 'inbody_index' %}" class="btn btn-block btn-info button-wrapper">
+            <span>목록</span>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+ 
+{% block script %}
+  <script src="{% static 'common/canvasjs-1.9.10/jquery.canvasjs.min.js' %}"></script>
+  <script>
+      jQuery(() => {
+        new CanvasJS.Chart('fatRate', {
+                nimationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Simple Line fatRate"
+                },
+                axisY: {
+                    includeZero: false
+                },
+                 data: [{
+                type: "line",
+                color: "orange",
+                dataPoints: [
+                    { y: 450, label: "20170323" },
+                    { y: 414, label: "20170323" },
+                    { y: 520, label: "20170323", indexLabel: "highest", markerColor: "red", markerType: "triangle" },
+                    { y: 460, label: "20170323" },
+                    { y: 450, label: "20170323" },
+                    { y: 500, label: "20170323" },
+                    { y: 480, label: "20170323" },
+                    { y: 480, label: "20170323" },
+                    { y: 410, label: "20170323", indexLabel: "lowest", markerColor: "DarkSlateGrey", markerType: "cross" },
+                    { y: 500, label: "20170323" },
+                    { y: 480, label: "20170323" },
+                    { y: 510, label: "20170323" }
+                ]
+            }
+                 ]
+          }).render();
+        new CanvasJS.Chart('chart1', {
+                nimationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Simple Line Chart1"
+                },
+                axisY: {
+                    includeZero: false
+                },
+                 data: [{
+                type: "line",
+                dataPoints: [
+                    { y: 450, label: "20170323" },
+                    { y: 414, label: "20170323" },
+                    { y: 520, label: "20170323", indexLabel: "highest", markerColor: "red", markerType: "triangle" },
+                    { y: 460, label: "20170323" },
+                    { y: 450, label: "20170323" },
+                    { y: 500, label: "20170323" },
+                    { y: 480, label: "20170323" },
+                    { y: 480, label: "20170323" },
+                    { y: 410, label: "20170323", indexLabel: "lowest", markerColor: "DarkSlateGrey", markerType: "cross" },
+                    { y: 500, label: "20170323" },
+                    { y: 480, label: "20170323" },
+                    { y: 510, label: "20170323" }
+                ]
+            }
+                 ]
+          }).render();
+      });
+  </script>
+{% endblock %}

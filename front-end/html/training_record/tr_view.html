@@ -1,0 +1,104 @@
+{% extends "main_layout.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/training_record/tr_base.css' %}">
+<link rel="stylesheet" href="{% static 'css/training_record/tr_view.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 col-sm-4">
+        <h3>Training Record</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-4">
+        <div class="input-group">
+            <span class="input-group-addon">PT Date</span>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="input-group">
+            <span class="input-group-addon">Session</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">/</span>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="input-group">
+            <span class="input-group-addon">Frequency</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">회(주)</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon">Intensity</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon">Time</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon">분</span>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="input-group">
+            <span class="input-group-addon">Type</span>
+            <select class="form-control" title="Choose type" id="type" name="type">
+                <option value="0">Resistance</option>
+                <option value="1">Capacity</option>
+                <option value="2">Mobility</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="input-group">
+            <span class="input-group-addon">Comment</span>
+            <textarea class="form-control" rows="10" id="comment"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12 tr-view-title">
+    <span> Training Program </span>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <textarea class="form-control" rows="10" id="comment1"></textarea>
+    </div>
+</div>
+
+<div class="row button-margin">
+    <div class="col-xs-3 col-sm-offset-4 col-sm-2">
+        <a href="" class="btn btn-danger btn-block"> 삭제 </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="" class="btn btn-warning  btn-block"> 수정 </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="" class="btn btn-primary  btn-block"> 등록 </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="{% url 'tr_index' %}" class="btn btn-info  btn-block"> 목록 </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
