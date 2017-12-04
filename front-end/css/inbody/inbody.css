@@ -1,0 +1,24 @@
+@import url('../common.css');
+
+table, th, td {
+    text-align: center;
+}
+
+input[type=text] {
+    text-align: right;
+}
+
+@media (max-width: 767px) {
+    .measure-btn-wrapper {
+        margin-bottom: 5px;
+    }
+}
+
+.chart-layout {
+    height: 270px;
+    width: 100%;
+}
+
+.button-wrapper {
+    margin-top: 10px;
+}

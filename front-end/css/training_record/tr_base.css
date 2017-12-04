@@ -1,0 +1,26 @@
+@import url('../common.css');
+.title.is-5.is-inline-block {
+    line-height: 2.4rem;
+}
+
+.table-header th,
+.table td {
+    text-align: center;
+    vertical-align: middle; 
+}
+
+.table-header {
+    background-color: #f6f5f6; 
+}
+
+.table td:last-child {
+    text-align: left;
+}
+
+.data-newline {
+    white-space: pre-line;
+}
+
+.od-color {
+     background-color: #dbdbdb;
+}

@@ -1,0 +1,94 @@
+@media screen and (min-width: 769px) {
+    .column.is-narrow.cursor {
+        padding: 0;
+        width: 11.35rem;
+    }
+    .modal-card {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .tile.is-parent {
+        padding: 0;
+    }
+}
+
+.mbr-top {
+    line-height: 2.4rem;
+    float: left;
+}
+
+.title.mbr-top {
+    margin: 0 10px 0 0;
+}
+
+.prefix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.modal-background {
+    opacity: 0.5
+}
+
+.field.has-addons.level-right div:last-child {
+    width: 100px;
+    margin-right: 2.8rem;
+}
+
+.column.is-narrow.cursor {
+    padding: 0;
+}
+
+.tile.is-parent {
+    padding: 0.3rem;
+}
+
+.tile.is-child {
+    background-color: #f6f5f6;
+    transition: all 1s
+}
+
+.tile.is-child:hover {
+    background-color: #a5b6e0;
+    transition: all 1s
+}
+
+.table th {
+    text-align: center;
+}
+
+tbody td {
+    text-align: center;
+}
+
+.card-content {
+    padding: 0.3rem;
+}
+
+.title.is-6 {
+    padding-bottom: 0.5rem;
+}
+
+.subtitle.is-6 {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+}
+
+.modal-card-body span {
+    display: inline-block;
+    margin: 2px 0;
+    font-weight: bold;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0
+}

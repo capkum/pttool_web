@@ -1,0 +1,259 @@
+{% extends "main_layout.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/cardio/cardio.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="cardio-title">
+        <h3>CARDIO PROGRAM</h3>
+    </div>
+    <div class="member-info-wrapper">
+        <span> * Client : 김성진(남) </span>
+        <span> 1974 년 03 월 20 일 </span>
+    </div>
+
+    <div class="cardio-wrapper clearfix">
+        <form action="#">
+            <!-- left time table -->
+            <div class="cardio-table-wrapper ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> 단계 </th>
+                            <th> 구간 </th>
+                            <th> 시간 </th>
+                            <th> 속도 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- [Warmming-up ]  -->
+                        <tr>
+                            <td rowspan=4 class='stepData'> Warmming-up </td>
+                            <td rowspan=4 class='sectionData'> </td>
+                            <td class='timeData'> 00 : 00 </td>
+                            <td class='speedData'>
+                                <input type=text name='sp'>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class='timeData'> 00 : 30 </td>
+                            <td class='speedData'>
+                                <input type=text name='sp'>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class='timeData'> 01 : 00 </td>
+                            <td class='speedData'>
+                                <input type=text name='sp'>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class='timeData'> 02 : 00 </td>
+                            <td class='speedData'>
+                                <input type=text name='sp'>
+                            </td>
+                        </tr>
+
+                        <!-- [Conditioning ] -->
+                        <tr>
+                            <td rowspan='3' class='stepData'>Conditioning </td>
+                            <td class='sectionData'> 1 </td>
+                            <td class="conditioning-time">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class='timeData'> 00 : 00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='timeData2'> 00 : 00 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="conditioning-speed">
+                                <table>
+                                    <tr>
+                                        <td class='speedData'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='speedData2'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- 왼쪽 데이터 루프구간 -->
+                        <tr>
+                            <td class='sectionData'> 2 </td>
+                            <td class="conditioning-time">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class='timeData'> 00 : 00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='timeData2'> 00 : 00 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="conditioning-speed">
+                                <table>
+                                    <tr>
+                                        <td class='speedData'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='speedData2'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- right time table -->
+            <div class="cardio-table-wrapper ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> 단계 </th>
+                            <th> 구간 </th>
+                            <th> 시간 </th>
+                            <th> 속도 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- [Conditioning ] -->
+                        <tr>
+                            <td rowspan='3' class='stepData'>Conditioning </td>
+                            <td class='sectionData'> 3 </td>
+                            <td class="conditioning-time">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class='timeData'> 00 : 00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='timeData2'> 00 : 00 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="conditioning-speed">
+                                <table>
+                                    <tr>
+                                        <td class='speedData'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='speedData2'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- 데이터 루프구간 -->
+                        <tr>
+                            <td class='sectionData'> 4 </td>
+                            <td class="conditioning-time">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class='timeData'> 00 : 00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='timeData2'> 00 : 00 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="conditioning-speed">
+                                <table>
+                                    <tr>
+                                        <td class='speedData'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='speedData2'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='sectionData'> 5 </td>
+                            <td class="conditioning-time">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class='timeData'> 00 : 00 </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='timeData2'> 00 : 00 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="conditioning-speed">
+                                <table>
+                                    <tr>
+                                        <td class='speedData'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='speedData2'>
+                                            <input type=text name='sp' value='' /> </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- [Cool-down ] -->
+                        <tr>
+                            <td height=36 class='stepData'> Cool-down </td>
+                            <td class='sectionData'> &nbsp; </td>
+                            <td class='timeData'> 27 : 00 </td>
+                            <td class='speedData'>
+                                <input type='text' name='sp' value='3.5' />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="cardio-btn-wrapper">
+    <div class="col-xs-3 col-sm-offset-4 col-sm-2">
+        <a href="#" class="btn btn-block btn-danger">
+            <span>삭제</span>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="#" class="btn btn-block btn-warning">
+            <span>수정</span>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="#" class="btn btn-block btn-primary">
+            <span>등록</span>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a href="{% url 'mbr_list' %}" class="btn btn-block btn-info">
+            <span>목록</span>
+        </a>
+    </div>
+</div>
+{% endblock %} {% block script %} {% endblock %}

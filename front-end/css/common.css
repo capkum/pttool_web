@@ -1,0 +1,28 @@
+.cursor {
+    cursor: pointer;
+}
+
+input {
+    text-align: center;
+}
+/* 
+select {
+    -webkit-appearance: none;
+}
+
+.table-header {
+    background-color: #d5d9f8;
+    color: #848dca;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #eaedf8;
+}
+
+.form-control[readonly] {
+    cursor: pointer;
+}
+
+select {
+    cursor: pointer;
+} */
