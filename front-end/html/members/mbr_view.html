@@ -1,263 +1,416 @@
-{% extends "main_layout.html" %} 
+{% extends "main_layout.html" %}
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'common/bootstrap-datepicker-1.6.4/css/bootstrap-datepicker3.css' %}">
+<link rel="stylesheet" href="{% static 'common/font-awesome-4.7.0/css/font-awesome.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/light.css">
 <link rel="stylesheet" href="{% static 'css/members/mbr_view.css' %}">
+<style>
+</style>
 {% endblock %}
 
 {% block content%}
-<div>
-    <h3>회원 상태 등록</h3>
-</div>
+<div id="mbrinfo">
+    <form action="">
+        <p class="title is-5"> 회원 상세정보 </p>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-2-desktop field has-addons">
+                <p class="control ">
+                    <a class="button is-static">
+                        이름
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" maxlength="4" placeholder="Name">
+                </p>
+            </div>
+            <div class="column is-3-tablet is-2-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        체중
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength=3 placeholder="Weight">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        KG
+                    </a>
+                </p>
+            </div>
+            <div class="column  is-3-tablet is-2-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        신장
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="height">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        CM
+                    </a>
+                </p>
+            </div>
+            <div class="column is-2 field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        성별
+                    </a>
+                </p>
+                <p class="select is-fullwidth">
+                    <select>
+                        <option value="m">남</option>
+                        <option value="f">여</option>
+                    </select>
+                </p>
+            </div>
+        </div>
 
-<h4>
-    <span>*</span> 회원정보</h4>
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">이름</span>
-            <input type="text" class="form-control">
+        <div class="columns is-variable is-1">
+            <div id="birth" class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        생년월일
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" readonly="readonly" type="text" placeholder="Birthday" data-input>
+                </p>
+                <p class="control">
+                    <a class="button" data-toggle>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="column is-4-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        활동량
+                    </a>
+                </p>
+                <p class="select is-fullwidth">
+                    <select id="activility">
+                        <option value="Top">Top</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">성별</span>
-            <select class="form-control" id="gender" name="gender">
-                <option value="male">남성</option>
-                <option value="female">여성</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">체중</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">KG</span>
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">신장</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">CM</span>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-xs-6 col-sm-6">
-        <div class="input-group">
-            <span class="input-group-addon">생년월일</span>
-            <input type="text" id="birth" class="form-control" readonly placeholder="날짜를 선택하세요" name="birth">
+        <p class="title is-6">
+            <span>*</span> 측정자료
+        </p>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        RHR
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        bmp
+                    </a>
+                </p>
+            </div>
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        E-mhr
+                    </a>
+                </p>
+                <p class="control  is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        bmp
+                    </a>
+                </p>
+            </div>
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        Vo2max
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        bmp
+                    </a>
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">활동량</span>
-            <select class="form-control" id="activity" name="activity">
-                <option value="Top">Top</option>
-                <option value="High">High</option>
-                <option value="Middle">Middle</option>
-                <option value="Low">Low</option>
-            </select>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        MHR
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        bmp
+                    </a>
+                </p>
+            </div>
+            <div class="column is-4-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        Recovery
+                    </a>
+                </p>
+                <p class="select is-fullwidth">
+                    <select id="recovery">
+                        <option value="Top">A(13이상)</option>
+                        <option value="High">B(8이상 12이하)</option>
+                        <option value="Medium">C(7이하)</option>
+                    </select>
+                </p>
+            </div>
         </div>
-    </div>
-</div>
 
-<h4>
-    <span>*</span> 측정자료</h4>
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">RHR</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">bmp</span>
+        <p class="title is-6">
+            <span>*</span> 목표설정
+        </p>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        Frequency
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" maxlength="2" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        회(주)
+                    </a>
+                </p>
+            </div>
+            <div class="column is-4-tablet is-4-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        Intensity
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        ~
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        %
+                    </a>
+                </p>
+            </div>
+            <div class="column is-2-tablet is-2-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        Time
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="number" maxlength="3" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        분
+                    </a>
+                </p>
+            </div>
+            <div class="column is-3-tablet is-2-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        type
+                    </a>
+                </p>
+                <p class="select is-fullwidth">
+                    <select id="recovery">
+                        <option value="Cardio">Cardio</option>
+                    </select>
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-6 col-sm-4">
-        <div class="input-group">
-            <span class="input-group-addon">E-mhr</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">bmp</span>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-        <div class="input-group">
-            <span class="input-group-addon">Vo2max</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">ml/kg/min</span>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">MHR</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">bmp</span>
-        </div>
-    </div>
 
-    <div class="col-xs-6 col-sm-4">
-        <div class="input-group">
-            <span class="input-group-addon">Recovery</span>
-            <select class="form-control" title="Choose type" id="recovery" name="recovery">
-                <option value="0">A(13이상)</option>
-                <option value="1">B(8이상 12이하)</option>
-                <option value="2">C(7이하)</option>
-            </select>
+        <p class="title is-6">
+            <span>*</span> Warmming-up
+        </p>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        WT
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        :
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+            </div>
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        L1
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+                <p class="control">
+                    <a class="button is-static">/</a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+            </div>
         </div>
-    </div>
-</div>
 
-<h4>
-    <span>*</span> 목표설정</h4>
-<div class="row">
-    <div class="col-xs-7 col-sm-4">
-        <div class="input-group">
-            <span class="input-group-addon">Frequency</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">회(주)</span>
+        <p class="title is-6">
+            <span>*</span> Conditioning
+        </p>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        IT
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        :
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+            </div>
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        Repeat
+                    </a>
+                </p>
+                <p class="control  is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+                <p class="control">
+                    <a class="button is-static">회</a>
+                </p>
+            </div>
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        L2
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+                <p class="control ">
+                    <a class="button is-static">/</a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Normal input">
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-5 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">Time</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">분</span>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-sm-5">
-        <div class="input-group">
-            <span class="input-group-addon">Intensity</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">~</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">%</span>
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">Type</span>
-            <input type="text" class="form-control" readonly="readonly" value="Cardio">
-        </div>
-    </div>
-</div>
 
-
-<h4>
-    <span>*</span> Warmming-up</h4>
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">WT</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">:</span>
-            <input type="text" class="form-control">
+        <p class="title is-6">
+            <span>*</span> Cool-down
+        </p>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        CT
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        :
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="0">
+                </p>
+            </div>
+            <div class="column is-3-tablet is-3-desktop field has-addons">
+                <p class="control">
+                    <a class="button is-static">
+                        L3
+                    </a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="0">
+                </p>
+                <p class="control">
+                    <a class="button is-static">/</a>
+                </p>
+                <p class="control is-expanded">
+                    <input class="input is-fullwidth" type="text" placeholder="0">
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-4 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">L1</span>
-            <input type="text" class="form-control">
-             <span class="input-group-addon">/</span>
-            <input type="text" class="form-control">
+        <div class="columns is-centered is-variable is-1">
+            <div class="column mbr-button-wrap">
+                <button class="button is-fullwidth is-danger"> 삭제 </button>
+            </div>
+            <div class="column mbr-button-wrap">
+                <button class="button is-fullwidth is-warning"> 수정 </button>
+            </div>
+            <div class="column mbr-button-wrap">
+                <button class="button is-fullwidth is-success"> 신규등록 </button>
+            </div>
+            <div class="column mbr-button-wrap">
+                <a href="{% url 'mbr_list' %}" class="button is-fullwidth is-link">
+                    회원관리
+                </a>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
-<h4>
-    <span>*</span> Conditining</h4>
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">IT</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">:</span>
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">Repeat</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">회</span>
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">L2</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">/</span>
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">RT</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">:</span>
-            <input type="text" class="form-control">
-        </div>
-    </div>
+{% endblock%}
 
-</div>
-
-<h4>
-    <span>
-        <span>*</span>
-    </span> Cool-down</h4>
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">CT</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">:</span>
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        <div class="input-group">
-            <span class="input-group-addon">L3</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon">/</span>
-            <input type="text" class="form-control">
-        </div>
-    </div>
-</div>
-
-<div class="row write-button">
-    <div class="col-xs-3 col-sm-offset-4 col-sm-2">
-        <a href="#" class="btn btn-block btn-danger">
-            <span>삭제</span>
-        </a>
-    </div>
-    <div class="col-xs-3 col-sm-2">
-        <a href="#" class="btn btn-block btn-warning">
-            <span>수정</span>
-        </a>
-    </div>
-    <div class="col-xs-3 col-sm-2">
-        <a href="#" class="btn btn-block btn-primary">
-            <span>등록</span>
-        </a>
-    </div>
-    <div class="col-xs-3 col-sm-2">
-        <a href="#" class="btn btn-block btn-info">
-            <span>목록</span>
-        </a>
-    </div>
-</div>
-{% endblock%} {% block script %}
-<script src="{% static 'common/bootstrap-datepicker-1.6.4/js/bootstrap-datepicker.js' %}"></script>
-<script>
-    jQuery(() => {
-        $('[name=birth]').datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'kr',
-        })
-    });
-</script>
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+<script src="{% static 'js/mbr/mbr_view.js'%}"></script>
 {% endblock %}
