@@ -15,9 +15,8 @@ class TbMember(models.Model):
     updateuser = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'TB_MEMBER'
-        ordering = ['-updatedate']
+        managed = True
 
 
 class TbMeasurement(models.Model):
@@ -44,31 +43,25 @@ class TbMeasurement(models.Model):
     speed = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'TB_MEASUREMENT'
+        managed = True
 
 
 class TbAdminaccount(models.Model):
-    seq = models.IntegerField(blank=True, null=True)
-    accountid = models.CharField(db_column='accountId', max_length=24)
-    accountpw = models.CharField(db_column='accountPw', max_length=70)
-    accountnm = models.CharField(db_column='accountNm', max_length=10)
-    accountph = models.CharField(
-        db_column='accountPh', max_length=15, blank=True, null=True)
-    accountdpt = models.CharField(
-        db_column='accountDpt', max_length=60, blank=True, null=True)
-    accountemail = models.CharField(
-        db_column='accountEmail', max_length=60, blank=True, null=True)
-    accountlv = models.CharField(db_column='accountLv', max_length=2)
+    seq = models.IntegerField(primary_key=True)
+    accountid = models.CharField(max_length=24)
+    accountpw = models.CharField(max_length=70)
+    accountnm = models.CharField(max_length=10)
+    accountph = models.CharField(max_length=15, blank=True, null=True)
+    accountdpt = models.CharField(max_length=60, blank=True, null=True)
+    accountemail = models.CharField(max_length=60, blank=True, null=True)
+    accountlv = models.CharField(max_length=2)
     state = models.CharField(max_length=1, blank=True, null=True)
-    insertuser = models.CharField(
-        db_column='insertUser', max_length=24, blank=True, null=True)
-    updateuser = models.CharField(
-        db_column='updateUser', max_length=24, blank=True, null=True)
-    updatedate = models.CharField(
-        db_column='updateDate', max_length=21, blank=True, null=True)
-    insertdate = models.CharField(db_column='insertDate', max_length=21)
+    insertuser = models.CharField(max_length=24, blank=True, null=True)
+    updateuser = models.CharField(max_length=24, blank=True, null=True)
+    updatedate = models.CharField(max_length=21, blank=True, null=True)
+    insertdate = models.CharField(max_length=21)
 
     class Meta:
-        managed = False
         db_table = 'TB_ADMINACCOUNT'
+        managed = True
