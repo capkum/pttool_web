@@ -5,24 +5,30 @@
 input {
     text-align: center;
 }
-/* 
-select {
-    -webkit-appearance: none;
+.input-text-align-right {
+    text-align: right;
 }
 
-.table-header {
-    background-color: #d5d9f8;
-    color: #848dca;
+.input-text-align-left {
+    text-align: left
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #eaedf8;
+.notification:not(:last-child) {
+    margin-bottom: 0;
 }
 
-.form-control[readonly] {
-    cursor: pointer;
+.notification {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
-select {
-    cursor: pointer;
-} */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s
+}
+
+.fade-enter,
+.fade-leave-to
+{
+    opacity: 0
+}

@@ -1,18 +1,20 @@
 {% extends "main_layout.html" %}
-{% load static %}
+{% load static %} 
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'common/font-awesome-4.7.0/css/font-awesome.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/light.css">
-<link rel="stylesheet" href="{% static 'css/members/mbr_view.css' %}">
+<link rel="stylesheet" href="{% static 'css/members/mbr_view.css' %}"> 
 <style>
+
 </style>
 {% endblock %}
 
 {% block content%}
 <div id="mbrinfo">
     <form action="">
+        <notic v-show="showNotic" @close="showNotic = false" :class="[noticStauts? 'is-success': 'is-danger']" :msg="noticMsg"></notic>
         <p class="title is-5"> 회원 상세정보 </p>
         <div class="columns is-variable is-1">
             <div class="column is-3-tablet is-2-desktop field has-addons">
@@ -22,7 +24,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" maxlength="4" placeholder="Name">
+                    <input class="input" type="text" v-model="mbrDetail.name" maxlength="4" placeholder="Name">
                 </p>
             </div>
             <div class="column is-3-tablet is-2-desktop field has-addons">
@@ -32,7 +34,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength=3 placeholder="Weight">
+                    <input class="input" type="number" v-model="mbrDetail.weight" maxlength=3 placeholder="Weight">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -47,7 +49,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="height">
+                    <input class="input" type="number" :value="mbrDetail.height" maxlength="3" placeholder="height">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -62,48 +64,54 @@
                     </a>
                 </p>
                 <p class="select is-fullwidth">
-                    <select>
-                        <option value="m">남</option>
-                        <option value="f">여</option>
+                    <select v-model="mbrDetail.sex">
+                        <option 
+                            v-for="gen in gender"
+                            :selected="gen.value == mbrDetail.sex"
+                            :value = gen.value>
+                            ${gen.text}
+                        </option>
                     </select>
                 </p>
             </div>
         </div>
 
-        <div class="columns is-variable is-1">
-            <div id="birth" class="column is-3-tablet is-3-desktop field has-addons">
+        <div class="columns is-variable is-1" >
+            <div id="birth" class="column is-4-tablet is-3-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         생년월일
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" readonly="readonly" type="text" placeholder="Birthday" data-input>
+                    <input class="input" readonly="readonly" v-model="mbrDetail.birthday" type="text" placeholder="Birthday" data-input>
                 </p>
                 <p class="control">
-                    <a class="button" data-toggle>
+                    <a class="button"  data-toggle>
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </a>
                 </p>
             </div>
-            <div class="column is-4-tablet is-3-desktop field has-addons">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         활동량
                     </a>
                 </p>
                 <p class="select is-fullwidth">
-                    <select id="activility">
-                        <option value="Top">Top</option>
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
+                    <select v-model="mbrDetail.activility">
+                        <option 
+                            v-for="val in activility"
+                            :value="val.value"
+                            :selected="val.value == mbrDetail.activility">
+                        ${val.text}    
+                        </option>
                     </select>
                 </p>
             </div>
         </div>
-
-        <p class="title is-6">
+        
+        <p class="title is-6"> 
             <span>*</span> 측정자료
         </p>
         <div class="columns is-variable is-1">
@@ -114,7 +122,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="mbrDetail.rhr" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -122,14 +130,14 @@
                     </a>
                 </p>
             </div>
-            <div class="column is-3-tablet is-3-desktop field has-addons">
+            <div class="column is-4-tablet is-3-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         E-mhr
                     </a>
                 </p>
                 <p class="control  is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="mbrDetail.e_mhr" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -137,14 +145,14 @@
                     </a>
                 </p>
             </div>
-            <div class="column is-3-tablet is-3-desktop field has-addons">
+            <div class="column is-4-tablet is-3-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         Vo2max
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="mbrDetail.vo2max" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -161,7 +169,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="mbrDetail.mhr" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -169,17 +177,20 @@
                     </a>
                 </p>
             </div>
-            <div class="column is-4-tablet is-3-desktop field has-addons">
+            <div class="column is-4-tablet is-4-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         Recovery
                     </a>
                 </p>
                 <p class="select is-fullwidth">
-                    <select id="recovery">
-                        <option value="Top">A(13이상)</option>
-                        <option value="High">B(8이상 12이하)</option>
-                        <option value="Medium">C(7이하)</option>
+                    <select v-model="mbrDetail.recovery">
+                        <option 
+                            v-for="val in recovery"
+                            :selected="val.value == mbrDetail.recovery"
+                            :value="val.value">
+                            ${val.text}
+                        </option>
                     </select>
                 </p>
             </div>
@@ -189,14 +200,14 @@
             <span>*</span> 목표설정
         </p>
         <div class="columns is-variable is-1">
-            <div class="column is-3-tablet is-3-desktop field has-addons">
+            <div class="column is-4-tablet is-3-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         Frequency
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" maxlength="2" placeholder="0">
+                    <input class="input" type="text" v-model="mbrDetail.frequency" maxlength="2" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -204,14 +215,14 @@
                     </a>
                 </p>
             </div>
-            <div class="column is-4-tablet is-4-desktop field has-addons">
+            <div class="column is-5-tablet is-4-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         Intensity
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="intensity_fst" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -219,7 +230,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="intensity_lst" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -227,14 +238,14 @@
                     </a>
                 </p>
             </div>
-            <div class="column is-2-tablet is-2-desktop field has-addons">
+            <div class="column is-3-tablet is-2-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         Time
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="number" maxlength="3" placeholder="0">
+                    <input class="input" type="number" v-model="mbrDetail.target_time" maxlength="3" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -242,19 +253,22 @@
                     </a>
                 </p>
             </div>
-            <div class="column is-3-tablet is-2-desktop field has-addons">
+        </div>
+        <div class="columns is-variable is-1">
+            <div class="column is-3-tablet is-3-desktop field has-addons">
                 <p class="control">
                     <a class="button is-static">
                         type
                     </a>
                 </p>
                 <p class="select is-fullwidth">
-                    <select id="recovery">
-                        <option value="Cardio">Cardio</option>
+                    <select v-model="types">
+                        <option value="cardio">Cardio</option>
                     </select>
                 </p>
             </div>
         </div>
+
 
         <p class="title is-6">
             <span>*</span> Warmming-up
@@ -267,7 +281,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="wt_m" placeholder="00">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -275,7 +289,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="wt_s" placeholder="00">
                 </p>
             </div>
             <div class="column is-3-tablet is-3-desktop field has-addons">
@@ -285,13 +299,13 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="l1_fst" placeholder="Normal input">
                 </p>
                 <p class="control">
                     <a class="button is-static">/</a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="l1_lst" placeholder="Normal input">
                 </p>
             </div>
         </div>
@@ -307,7 +321,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="it_m" placeholder="00">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -315,7 +329,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="it_s" placeholder="00">
                 </p>
             </div>
             <div class="column is-3-tablet is-3-desktop field has-addons">
@@ -325,7 +339,7 @@
                     </a>
                 </p>
                 <p class="control  is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="mbrDetail.repeat" placeholder="Normal input">
                 </p>
                 <p class="control">
                     <a class="button is-static">회</a>
@@ -338,13 +352,13 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="l2_fst" placeholder="00">
                 </p>
                 <p class="control ">
                     <a class="button is-static">/</a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Normal input">
+                    <input class="input" type="text" v-model="l2_lst" placeholder="00">
                 </p>
             </div>
         </div>
@@ -360,7 +374,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="0">
+                    <input class="input" type="text" v-model="ct_m" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">
@@ -368,7 +382,7 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="0">
+                    <input class="input" type="text" v-model="ct_s" placeholder="0">
                 </p>
             </div>
             <div class="column is-3-tablet is-3-desktop field has-addons">
@@ -378,13 +392,13 @@
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="0">
+                    <input class="input" type="text" v-model="l3_fst" placeholder="0">
                 </p>
                 <p class="control">
                     <a class="button is-static">/</a>
                 </p>
                 <p class="control is-expanded">
-                    <input class="input is-fullwidth" type="text" placeholder="0">
+                    <input class="input is-fullwidth" type="text" v-model="l3_lst" placeholder="0">
                 </p>
             </div>
         </div>
@@ -393,7 +407,7 @@
                 <button class="button is-fullwidth is-danger"> 삭제 </button>
             </div>
             <div class="column mbr-button-wrap">
-                <button class="button is-fullwidth is-warning"> 수정 </button>
+                <button class="button is-fullwidth is-warning" @click.prevent="onSubmit('update')"> 수정 </button>
             </div>
             <div class="column mbr-button-wrap">
                 <button class="button is-fullwidth is-success"> 신규등록 </button>
@@ -406,8 +420,10 @@
         </div>
     </form>
 </div>
-{% endblock%}
 
+
+
+{% endblock%}
 {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

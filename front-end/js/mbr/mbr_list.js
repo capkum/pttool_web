@@ -48,11 +48,11 @@ let user = new Vue({
             membercode: '',
         },
     },
-    delimiters: ['${', '}'],
     mounted() {
-        axios.defaults.xsrfCookieName = 'csrftoken'
-        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-        axios.post('http://127.0.0.1:8000/members/')
+        url_obj = window.location; 
+        axios.defaults.xsrfCookieName = 'csrftoken';
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+        axios.post(url_obj.href)
             .then((cb) => {
                 this.mbrData = cb.data;
             })
