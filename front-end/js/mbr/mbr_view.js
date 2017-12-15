@@ -83,8 +83,7 @@ t1 = new Vue({
             wrap: true,
         });
 
-        axios.defaults.xsrfCookieName = 'csrftoken';
-        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+        axios.defaults.xsrfHeaderName = "X-CSRFToken";
         axios.post(url_obj.href)
             .then((cb) => {
                 this.mbrDetail = cb.data;

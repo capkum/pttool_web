@@ -49,8 +49,7 @@ let user = new Vue({
         },
     },
     mounted() {
-        url_obj = window.location; 
-        axios.defaults.xsrfCookieName = 'csrftoken';
+        url_obj = window.location;
         axios.defaults.xsrfHeaderName = 'X-CSRFToken';
         axios.post(url_obj.href)
             .then((cb) => {

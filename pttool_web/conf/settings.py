@@ -128,4 +128,4 @@ STATICFILES_DIRS = (
 )
 
 # axios csrf setting
-CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
