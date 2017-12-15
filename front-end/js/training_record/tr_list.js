@@ -7,7 +7,7 @@ new Vue({
     mounted() {
         url_obj = window.location;
         this.current_url = url_obj;
-        axios.defaults.xsrfCookieName = 'csrftoken';
+
         axios.defaults.xsrfHeaderName = 'X-CSRFToken';
         axios.post(url_obj.href)
             .then((cb) => {
