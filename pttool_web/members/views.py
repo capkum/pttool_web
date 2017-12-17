@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core import serializers
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from .models import TbMember, TbMeasurement
 import json
 
@@ -21,7 +21,7 @@ def list(request):
 
 
 def create(request):
-    return render(request, 'members/mbr_view.html')
+    return render(request, 'members/mbr_create.html')
 
 
 def read(request, membercode):
