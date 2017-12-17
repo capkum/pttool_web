@@ -107,6 +107,9 @@ t1 = new Vue({
             });
     },
     methods: {
+        goUrl(uri) {
+            window.location.href = `/members/${uri}`; 
+        },
         data_split(val) {
             return (val || '').split('/')
         },
@@ -152,7 +155,6 @@ t1 = new Vue({
             mbrData['recovery'] = this.mbrDetail.recovery;
             mbrData['activility'] = this.mbrDetail.activility;
 
-            axios.defaults.xsrfCookieName = 'csrftoken';
             axios.defaults.xsrfHeaderName = 'X-CSRFToken';
             url = url_obj.href.replace('read', crud);
 
