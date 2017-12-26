@@ -1,0 +1,5 @@
+<notic v-show="showNotic"
+    @close="showNotic = false"
+    :class="[noticStauts? 'is-success': 'is-danger']"
+    :msg="noticMsg">
+</notic>

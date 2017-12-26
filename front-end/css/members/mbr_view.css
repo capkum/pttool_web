@@ -1,16 +1,35 @@
 @import url('../common.css');
-
-h4 span {
-    display: inline-block;
-    line-height: 2rem;
-    vertical-align: middle;
-    color: red;
+.field.has-addons {
+    margin: 0;
+    padding-bottom: 0; 
 }
 
-.mw-button {
-    text-align: right
+.title:not(:last-child) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.write-button {
-    margin-top: 10px;
+.input[disabled] {
+    border-color: #dbdbdb;
+}
+
+.mbr-button-wrap:not(:last-child) {
+    padding-bottom: 0;
+}
+
+.input.is-danger,
+.textarea.is-danger {
+    z-index: 10; 
+}
+
+@media screen and (max-width: 769px) {
+    .mbr-button-wrap:not(:first-child) {
+        padding-top: 0.5rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .modal-card {
+        width: 340px;
+    }
 }

@@ -1,0 +1,10 @@
+<notic v-show="showNotic"
+    @close="showNotic = false"
+    :class="[noticStauts? 'is-success': 'is-danger']"
+    :msg="noticMsg">
+</notic>
+
+<comfirm-modal v-show="showModal" 
+    @close="showModal = false" 
+    :msg="modalMsg">
+</comfirm-modal>

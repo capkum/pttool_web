@@ -25,7 +25,7 @@ SECRET_KEY = '%kyvcqesk2&#m0s8(*b45yk1^$=ky3u!$i$1+d_upkb8eptbx@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['1.232.119.242', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -80,7 +80,8 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'pttool.db3'),
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -115,7 +116,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -129,3 +130,6 @@ STATICFILES_DIRS = (
 
 # axios csrf setting
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
+# datetimefield format
+DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M:%s']

@@ -1,0 +1,546 @@
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-2-desktop field has-addons">
+        <p class="control ">
+            <a class="button is-static">
+                이름
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                v-validate="'required|max:4'"
+                v-model="mbrData.name" 
+                name="name"
+                maxlength="4" 
+                :class="{'input': true, 'is-danger': errors.has('name') }"
+                placeholder="name">
+        </p>
+    </div>
+    <div class="column is-3-tablet is-2-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                체중
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                v-model="mbrData.weight"
+                v-validate="'required|numeric'"
+                maxlength=3 
+                name="weight"
+                :class="{'input': true, 'is-danger': errors.has('weight') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                KG
+            </a>
+        </p>
+    </div>
+    <div class="column  is-3-tablet is-2-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                신장
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="height"
+                v-model="mbrData.height"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('height') }"
+                maxlength="3"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                CM
+            </a>
+        </p>
+    </div>
+    <div class="column is-2 field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                성별
+            </a>
+        </p>
+        <p class="select is-fullwidth">
+            <select v-model="mbrData.sex">
+                <option v-for="gen in gender"
+                    :selected="gen.value == mbrData.sex"
+                    :value=gen.value>
+                    ${gen.text}
+                </option>
+            </select>
+        </p>
+    </div>
+</div>
+
+
+<div class="columns is-variable is-1">
+    <div id="birth" class="column is-4-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                생년월일
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input 
+                type="text"
+                name="birthday"
+                v-model="mbrData.birthday" 
+                v-validate="'required'"
+                :class="{'input': true, 'is-danger': errors.has('birthday') }"
+                placeholder="Birthday" 
+                readonly="readonly" 
+                data-input>
+        </p>
+        <p class="control">
+            <a class="button" data-toggle>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+            </a>
+        </p>
+    </div>
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                활동량
+            </a>
+        </p>
+        <p class="select is-fullwidth">
+            <select v-model="mbrData.activility">
+                <option v-for="val in activility" 
+                    :value="val.value" 
+                    :selected="val.value == mbrData.activility">
+                    ${val.text}
+                </option>
+            </select>
+        </p>
+    </div>
+</div>
+
+<p class="title is-6">
+    <span>*</span> 측정자료
+</p>
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                RHR
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input
+                type="text"
+                name="rhr"
+                v-model="mbrData.rhr"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('rhr') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                bmp
+            </a>
+        </p>
+    </div>
+    <div class="column is-4-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                E-mhr
+            </a>
+        </p>
+        <p class="control  is-expanded">
+            <input type="text"
+                name="e_mhr"
+                v-model="mbrData.e_mhr"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('e_mhr') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                bmp
+            </a>
+        </p>
+    </div>
+    <div class="column is-4-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                Vo2max
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="vo2max"
+                v-model="mbrData.vo2max"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('vo2max') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                bmp
+            </a>
+        </p>
+    </div>
+</div>
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                MHR
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="mhr"
+                v-model="mbrData.mhr"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('mhr') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                bmp
+            </a>
+        </p>
+    </div>
+    <div class="column is-4-tablet is-4-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                Recovery
+            </a>
+        </p>
+        <p class="select is-fullwidth">
+            <select v-model="mbrData.recovery">
+                <option v-for="val in recovery" :selected="val.value == mbrData.recovery" :value="val.value">
+                    ${val.text}
+                </option>
+            </select>
+        </p>
+    </div>
+</div>
+
+<p class="title is-6">
+    <span>*</span> 목표설정
+</p>
+<div class="columns is-variable is-1">
+    <div class="column is-4-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                Frequency
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="frequency"
+                v-model="mbrData.frequency"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('frequency') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                회(주)
+            </a>
+        </p>
+    </div>
+    <div class="column is-5-tablet is-4-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                Intensity
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="intensity_fst"
+                v-model="mbrData.intensity_fst"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('intensity_fst') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                ~
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="intensity_lst"
+                v-model="mbrData.intensity_lst"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('intensity_lst') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                %
+            </a>
+        </p>
+    </div>
+    <div class="column is-3-tablet is-2-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                Time
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="target_time"
+                v-model="mbrData.target_time"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('target_time') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                분
+            </a>
+        </p>
+    </div>
+</div>
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                type
+            </a>
+        </p>
+        <p class="select is-fullwidth">
+            <select v-model="mbrData.types">
+                <option v-for="val in types"
+                    :selected="val.value == mbrData.types"
+                    :value="val.value">
+                    ${val.text}
+                </option>
+            </select>
+        </p>
+    </div>
+</div>
+
+
+<p class="title is-6">
+    <span>*</span> Warmming-up
+</p>
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                WT
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="wt_m"
+                v-model="mbrData.wt_m"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('wt_m') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                :
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="wt_s"
+                v-model="mbrData.wt_s"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('wt_s') }"
+                placeholder="0">
+        </p>
+    </div>
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                L1
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="l1_fst"
+                v-model="mbrData.l1_fst"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('l1_fst') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">/</a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="l1_lst"
+                v-model="mbrData.l1_lst"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('l1_lst') }"
+                placeholder="0">
+        </p>
+    </div>
+</div>
+
+<p class="title is-6">
+    <span>*</span> Conditioning
+</p>
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                IT
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="it_m"
+                v-model="mbrData.it_m"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('it_m') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                :
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="it_s"
+                v-model="mbrData.it_s"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('it_s') }"
+                placeholder="0">
+        </p>
+    </div>
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                Repeat
+            </a>
+        </p>
+        <p class="control  is-expanded">
+            <input type="text"
+                name="numeric"
+                v-model="mbrData.repeat"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('numeric') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">회</a>
+        </p>
+    </div>
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                L2
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="l2_fst"
+                v-model="mbrData.l2_fst"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('l2_fst') }"
+                placeholder="0">
+        </p>
+        <p class="control ">
+            <a class="button is-static">/</a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text"
+                name="l2_lst"
+                v-model="mbrData.l2_lst"
+                v-validate="'required|numeric'"
+                :class="{'input': true, 'is-danger': errors.has('l2_lst') }"
+                placeholder="0">
+        </p>
+    </div>
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                RT
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="rt_m"
+                v-model="mbrData.rt_m"
+                v-validate="'required|numeric'" 
+                :class="{'input': true, 'is-danger': errors.has('rt_m') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                :
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="rt_s"
+                v-model="mbrData.rt_s"
+                v-validate="'required|numeric'" 
+                :class="{'input': true, 'is-danger': errors.has('rt_s') }"
+                placeholder="0">
+        </p>
+    </div>
+</div>
+
+<p class="title is-6">
+    <span>*</span> Cool-down
+</p>
+<div class="columns is-variable is-1">
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                CT
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="ct_m"
+                v-model="mbrData.ct_m"
+                v-validate="'required|numeric'" 
+                :class="{'input': true, 'is-danger': errors.has('ct_m') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">
+                :
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="ct_s"
+                v-model="mbrData.ct_s"
+                v-validate="'required|numeric'" 
+                :class="{'input': true, 'is-danger': errors.has('ct_s') }"
+                placeholder="0">
+        </p>
+    </div>
+    <div class="column is-3-tablet is-3-desktop field has-addons">
+        <p class="control">
+            <a class="button is-static">
+                L3
+            </a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="l3_fst"
+                v-model="mbrData.l3_fst"
+                v-validate="'required|numeric'" 
+                :class="{'input': true, 'is-danger': errors.has('l3_fst') }"
+                placeholder="0">
+        </p>
+        <p class="control">
+            <a class="button is-static">/</a>
+        </p>
+        <p class="control is-expanded">
+            <input type="text" 
+                name="l3_lst"
+                v-model="mbrData.l3_lst"
+                v-validate="'required|numeric'" 
+                :class="{'input': true, 'is-danger': errors.has('l3_lst') }"
+                placeholder="0">
+        </p>
+    </div>
+</div>
