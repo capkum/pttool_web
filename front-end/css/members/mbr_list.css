@@ -12,6 +12,9 @@
     .tile.is-parent {
         padding: 0;
     }
+    .modal-card-body .columns:not(:last-child) {
+        margin-bottom: 1rem;
+    }
 }
 
 .mbr-top {

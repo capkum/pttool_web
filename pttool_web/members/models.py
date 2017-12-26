@@ -10,9 +10,8 @@ class TbMember(models.Model):
     height = models.CharField(max_length=3)
     weight = models.CharField(max_length=3)
     activility = models.CharField(max_length=2)
-    insertdate = models.DateField()
-    updatedate = models.CharField(max_length=50, blank=True, null=True)
-    updateuser = models.CharField(max_length=50, blank=True, null=True)
+    insertdate = models.DateTimeField(auto_now_add=True)
+    updatedate = models.DateField(auto_now=True, blank=True, null=True)
 
     class Meta:
         db_table = 'TB_MEMBER'
@@ -39,7 +38,7 @@ class TbMeasurement(models.Model):
     ct = models.IntegerField()
     l3 = models.CharField(max_length=10)
     weight = models.CharField(max_length=3, blank=True, null=True)
-    insertdate = models.DateField(unique=True)
+    insertdate = models.DateTimeField(auto_now_add=True, unique=True)
     speed = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -59,8 +58,9 @@ class TbAdminaccount(models.Model):
     state = models.CharField(max_length=1, blank=True, null=True)
     insertuser = models.CharField(max_length=24, blank=True, null=True)
     updateuser = models.CharField(max_length=24, blank=True, null=True)
-    updatedate = models.CharField(max_length=21, blank=True, null=True)
-    insertdate = models.CharField(max_length=21)
+    updatedate = models.DateField(
+        auto_now=True, max_length=21, blank=True, null=True)
+    insertdate = models.DateField(auto_now_add=True, max_length=21)
 
     class Meta:
         db_table = 'TB_ADMINACCOUNT'
