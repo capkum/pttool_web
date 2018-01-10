@@ -1,26 +1,42 @@
 @import url('../common.css');
-.title.is-5.is-inline-block {
-    line-height: 2.4rem;
+@media screen and (max-width: 769px) {
+    .hidden-table-column {
+        display: none;
+    }
+    .textarea-wrap {
+        padding: 12px 0;
+    }
+    .column.is-12-mobile {
+        padding-left: 0;
+    }
 }
 
-.table-header th,
-.table td {
-    text-align: center;
-    vertical-align: middle; 
+.field.has-addons {
+    margin: 0;
+    padding-bottom: 0;
+    padding-right: 0;
 }
 
-.table-header {
-    background-color: #f6f5f6; 
+.column-title {
+    margin-top: 12px;
 }
 
-.table td:last-child {
-    text-align: left;
+.button-wrapper {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.data-newline {
-    white-space: pre-line;
+.textarea-border {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-width: 0;
 }
 
-.od-color {
-     background-color: #dbdbdb;
-}
+
+/* 
+
+.textarea-wrap {
+    border-top-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+} */

@@ -1,14 +1,8 @@
-{% extends "main_layout.html" %}
-{% load static %}
-
-{% block style %}
-    <link rel="stylesheet" href="{% static 'css/training_record/tr_base.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends "main_layout.html" %} {% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/training_record/tr_base.css' %}"> {% endblock %} {% block content %}
 <div id="training">
     <div class="columns ">
-        <div class="column is-offset-1 is-10">
+        <div class="column is-12 is-12-mobile ">
             <p class="title is-5 is-inline-block">
                 Training Record
             </p>
@@ -16,7 +10,7 @@
     </div>
 
     <div class="columns">
-        <div class="column is-offset-1 is-10">
+        <div class="column is-12-mobile is-12">
             <table class="table is-fullwidth is-marginless is-hoverable is-narrow is-bordered">
                 <thead>
                     <tr class="table-header">
@@ -24,16 +18,16 @@
                         <th> Session </th>
                         <th> Time </th>
                         <th> Type </th>
-                        <th> Comment </th>
+                        <th class="hidden-table-column"> Comment </th>
                     </tr>
                 </thead>
-                <tbody v-for="item in tr_data">
-                    <tr class="cursor" @click="detail(item.pk, item.fields.membercode)">
+                <tbody>
+                    <tr v-for="item in tr_data" class="cursor" @click="detail(item.pk, item.fields.membercode)">
                         <td> ${item.fields.ptrymd}</td>
                         <td> ${item.fields.ptrsessionf}/10 </td>
                         <td> ${item.fields.ptrtime} </td>
                         <td> ${item.fields.ptrtype} </td>
-                        <td  class="data-newline"> ${item.fields.ptrcomment} </td>
+                        <td class="data-newline hidden-table-column"> ${item.fields.ptrcomment} </td>
                     </tr>
                 </tbody>
             </table>
@@ -41,10 +35,5 @@
     </div>
 
 </div>
-{% endblock %}
-
-
-{% block script %}
-<script src="{% static 'js/training_record/tr_list.js' %}"></script>
-{% endblock %}
-
+{% endblock %} {% block script %}
+<script src="{% static 'js/training_record/tr_list.js' %}"></script> {% endblock %}
