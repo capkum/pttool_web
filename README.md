@@ -5,16 +5,15 @@
 ### Specification
 * python3: v3.6.1
 * django: v1.11.7
-* social_auth_app_django: v2.0.0
-* bootstrap: 3.3.2
-* jquery: 3.2.1 
+* bulma: 0.6.2
+* vue: 2.5.1
 
 
 ### Node package ###
 * gulp: ^3.9.1
-* gulp-typescript: ^3.2.2
-* tsify: ^3.0.3
-* typescript: ^2.5.2
+* gulp-typescript: ^3.2.2 (현 버전에서는 사용하지 않음)
+* tsify: ^3.0.3 (현 버전에서는 사용하지 않음)
+* typescript: ^2.5.2 (현 버전에서는 사용하지 않음)
 
 
 ## Mac OSX
@@ -22,12 +21,26 @@
 ```shell
 $> npm install
 ```
-* typescript compile
-```zshell
-$> gulp ts_compile
-```
 
 * gulp를 이용하여 front-end파일을 프로젝트 배포 폴더로 이동
-```zshell
+```shell
 $> gulp
+```
+
+* brew를 이용한 python3 설치 및 virtualenv 설정
+```shell
+$> brew install python3
+$> python3 -m venv venv/pttool
+$> source venv/pttool/bin/activate
+```
+
+* django 설치 
+```shell
+$> pip install django==1.11.7
+```
+
+* run pttool application 
+``` shell
+$> cd pttool_web
+$> python manage.py runserver 0:8000
 ```
