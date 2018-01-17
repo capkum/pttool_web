@@ -18,7 +18,7 @@
 
     <div class="columns is-centered is-variable is-1">
         <div class="column mbr-button-wrap">
-            <button class="button is-fullwidth is-danger"> 삭제 </button>
+            <a class="button is-fullwidth is-danger"  @click.prevent="onDelete('delete', $event)"> 삭제 </a>
         </div>
         <div class="column mbr-button-wrap">
             <a class="button is-fullwidth is-warning" @click.prevent="onSubmit('update', $event)"> 수정 </a>

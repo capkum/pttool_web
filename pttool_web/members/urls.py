@@ -4,7 +4,11 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.list, name='mbr_list'),
-    url(r'^create/$', views.create, name='mbr_create'),
-    url(r'^read/(?P<membercode>[0-9]+)?$', views.read, name='mbr_read'),
-    url(r'^update/(?P<membercode>[0-9]+)?$', views.update, name='mbr_update'),
+    url(r'^members/create/$', views.create, name='mbr_create'),
+    url(r'^members/read/(?P<membercode>[0-9]+)?$',
+        views.read, name='mbr_read'),
+    url(r'^members/update/(?P<membercode>[0-9]+)?$',
+        views.update, name='mbr_update'),
+    url(r'members/delete/(?P<membercode>[0-9]+)?$',
+        views.delete, name='mbr_delete')
 ]

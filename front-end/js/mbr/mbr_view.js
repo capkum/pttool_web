@@ -155,9 +155,9 @@ new Vue({
             } else {
                 set_min = min / 60;
                 set_sec = min % 60;
-                min = (set_min < 10) ? '0' + set_min : set_min;
+                min = (set_min < 10) ? '0' + Math.floor(set_min) : Math.floor(set_min);
                 sec = (set_sec < 10) ? '0' + set_sec : set_sec;
-
+ 
                 return [min, sec];
             }
         },
@@ -176,6 +176,26 @@ new Vue({
             this.mbrData['it'] = this.set_min(this.mbrData.it_m, this.mbrData.it_s);
             this.mbrData['ct'] = this.set_min(this.mbrData.ct_m, this.mbrData.ct_s);
             return this.mbrData;
+        },
+
+        onDelete(crud, e) {
+            e.preventDefault();
+            axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+            url = url_obj.href.replace('read', crud);
+
+            if (confirm('정말로 수정하시겠습니까?')) {
+                axios.post(url)
+                    .then(cb => {
+                       if (cb) {
+                           window.location = url_obj.origin;
+                       }
+                    })
+                    .catch(err_cb => {
+                        console.log(err_cb);
+                        return cb.data = false;
+                    });
+            }
+            
         },
 
         onSubmit(crud, e) {

@@ -28,7 +28,7 @@ def create(request):
         to_dict = json.loads(data)['mbr_data']
         now = timezone.now()
         set_membercode = now.strftime('%Y%M%d%H%M%S%f')[0:16]
-
+        print(to_dict)
         try:
             TbMember(
                 membercode=set_membercode,
@@ -62,7 +62,8 @@ def create(request):
                 type=to_dict['type'],
                 vo2max=to_dict['vo2max'],
                 wt=to_dict['wt'],
-                rt=to_dict['rt']
+                rt=to_dict['rt'],
+                weight=to_dict['weight'],
             ).save()
 
         except Exception as e:
@@ -139,6 +140,28 @@ def update(request, membercode):
                 wt=to_dict['wt']
             )
 
+        except Exception as e:
+            status = False
+            print(str(e))
+
+    return HttpResponse(status)
+
+
+def delete(request, membercode):
+    status = False
+    if request.method == 'POST':
+        try:
+            query = TbMeasurement.objects.get(membercode=membercode)
+            query.delete()
+            status = True
+        except Exception as e:
+            status = False
+            print(str(e))
+
+        try:
+            query = TbMember.objects.get(membercode=membercode)
+            query.delete()
+            status = True
         except Exception as e:
             status = False
             print(str(e))

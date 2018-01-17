@@ -13,13 +13,13 @@ Vue.component('mbrmodal', {
                         <span class="button is-info is-fullwidth" @click="go_url(mbrInfo.membercode, 'members/read')"> Cardio Data </span>
                     </p>
                     <p class="columns" style="margin: 10px, 0;">
-                        <span class="button is-info is-fullwidth"  @click="go_url(mbrInfo.membercode, 'cardio')"> Cardio Program </span>
+                        <span class="button is-info is-fullwidth"  @click="alt_msg()"> Cardio Program </span>
                     </p>
                     <p class="columns" style="margin: 10px, 0;">
                         <span class="button is-info is-fullwidth" @click="go_url(mbrInfo.membercode, 'training_record')"> Training Record </span>
                     </p>
                     <p class="columns" style="margin: 10px, 0;">
-                        <span class="button is-info is-fullwidth"> Inbody </span>
+                        <span class="button is-info is-fullwidth" @click="alt_msg()"> Inbody </span>
                     </p>
                 </section>
                 <footer class="modal-card-foot">
@@ -32,6 +32,9 @@ Vue.component('mbrmodal', {
     methods: {
         go_url(membercode, uri) {
             window.location.href = '/' + uri + '/' + membercode
+        },
+        alt_msg() {
+            alert('준비 중입니다')
         }
     }
 });
