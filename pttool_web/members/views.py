@@ -136,6 +136,8 @@ def update(request, membercode):
                 rhr=to_dict['rhr'],
                 type=to_dict['types'],
                 vo2max=to_dict['vo2max'],
+                weight=to_dict['weight'],
+                target_time=to_dict['target_time'],
                 wt=to_dict['wt']
             )
 
