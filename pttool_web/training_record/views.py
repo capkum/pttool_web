@@ -23,6 +23,10 @@ def view(request, seq):
     return render(request, 'training_record/tr_view.html', {})
 
 
+def create(request):
+    return None
+
+
 def update(request):
     pass
 

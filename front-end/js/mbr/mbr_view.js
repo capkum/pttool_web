@@ -157,8 +157,8 @@ new Vue({
                 set_sec = min % 60;
                 min = (set_min < 10) ? '0' + Math.floor(set_min) : Math.floor(set_min);
                 sec = (set_sec < 10) ? '0' + set_sec : set_sec;
- 
                 return [min, sec];
+
             }
         },
         set_min(min, sec) {

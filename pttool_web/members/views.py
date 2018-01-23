@@ -28,7 +28,7 @@ def create(request):
         to_dict = json.loads(data)['mbr_data']
         now = timezone.now()
         set_membercode = now.strftime('%Y%M%d%H%M%S%f')[0:16]
-        print(to_dict)
+
         try:
             TbMember(
                 membercode=set_membercode,
@@ -137,6 +137,8 @@ def update(request, membercode):
                 rhr=to_dict['rhr'],
                 type=to_dict['types'],
                 vo2max=to_dict['vo2max'],
+                weight=to_dict['weight'],
+                target_time=to_dict['target_time'],
                 wt=to_dict['wt']
             )
 
