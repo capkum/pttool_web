@@ -44,3 +44,6 @@ $> pip install django==1.11.7
 $> cd pttool_web
 $> python manage.py runserver 0:8000
 ```
+
+
+* [http://127.0.0.1:8000](http://127.0.0.1:8000)
